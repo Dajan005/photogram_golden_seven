@@ -1,32 +1,26 @@
-<!DOCTYPE html>
 <html><head>
   <title>Photogram</title>
   <link rel="stylesheet" media="all" href="/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
   <script src="/assets/application-10ae9348133c44590cf059bf8209124a94861ffcdd12b0642fc4b33b072cad4d.js"></script>
   <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="l/N3bxEfESZ2+2pwFJLw/8qost4I5c2eSawr/6MG6eUQk+6unCrNbLnMZ5G1g3XcEU7avwsXGqcX0Eva1ur+Hw==">
+<meta name="csrf-token" content="BnVpU8yVAfoYiVyJNzhCvP1UI4ESun/7qw6+hKxD7zKBFfCSQaDdsNe+UWiWKcefJrJL4BFIqML1ct6h2a/4yA==">
 </head>
 <body>
 
-<h1>Add A New photo</h1>
+<h1>Edit photo</h1>
 
-<form action="/create_photo">
+<form action="/update_photo/:id">
   <div>
     <label for="photo_caption">Caption:</label>
-    <input id="photo_caption" type="text" name="the_caption">
+    <input id="photo_caption" type="text" name="the_caption" value= <%=@photo.caption%>>
   </div>
   <div>
     <label for="photo_image_url">Image URL:</label>
-    <input id="photo_image_url" type="text" name="the_source">
+    <input id="photo_image_url" type="text" name="the_source" value= <%=@photo.source%>>
   </div>
   <div>
-    <button>Create Photo</button>
+    <button>Update Photo</button>
   </div>
 </form>
 
-
-
-
-</body>
-
-</html>
+</body></html>

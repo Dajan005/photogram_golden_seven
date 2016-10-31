@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   def index
+# params = {"the_source" => 4, "the_caption" => 5
     @list_of_photos = Photo.all
   end
 
@@ -11,47 +12,42 @@ class PhotosController < ApplicationController
   end
 
   def new_form
-      render  ("/photos/new.html.erb")
+      render  ("/photos/new_form.html.erb")
   end
 
   def create_row
     p=Photo.new
-    p.source = params["the_source"]
-    p.caption = params["the_caption"]
+    p.source = params[:the_source]
+    p.caption = params[:the_caption]
     p.save
 
   redirect_to("http://localhost:3000/photos")
 end
 
 def destroy
-  @photo_delete = Photo.find_by({ :id => params[:id] })
-  @delete = @photo_delete.destroy
+  i = Photo.find_by({ :id => params[:id] })
+  i.destroy
 
   redirect_to("http://localhost:3000/photos")
 
 end
 
 def edit_form
-  @photo_edit = Photo.find_by({ :id => params[:id] })
-  @photo_edit_source = @photo_edit.source
-  @photo_edit_caption = @photo_edit.caption
-  @photo_edit_id = @photo_edit.id
-  render  ("/photos/edit.html.erb")
+  @photo = Photo.find_by({ :id => params[:id] })
+
+  render  ("/photos/edit_form.html.erb")
 
 end
 
 def update_row
+  p=Photo.find_by({ :id=>params[:id]})
+  p.caption = params[:the_caption]
+  p.source  = params[:the_source]
+  p.save
 
-  # params = {:the_caption => "Lake Bondhus", :the_source" => "http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Lake_Bondhus_Norway_2862.jpg/1280px-Lake_Bondhus_Norway_2862.jpg"}
+  @photo = Photo.find_by({ :id=>params[:id]})
 
-  i = Photo.find_by({ :id=>params[:id] })
-  i.caption = params[:updated_caption]
-  i.source = params[:updated_source]
-  i.save
-
-  @photo = Photo.find_by({ :id => params[:id] })
-
-  redirect_to("/photos/#{@photo.id}")
+  redirect_to("/photos/:id")
 end
 
 end
